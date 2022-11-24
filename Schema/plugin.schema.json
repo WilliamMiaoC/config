@@ -1,0 +1,90 @@
+{
+  "$id": "https://example.com/product.schema.json",
+  "title": "Plugin schema",
+  "description": "Plugin schema for zeta engine",
+  "definitions": {
+    "plugin": {
+      "required": [
+        "id"
+      ],
+      "description": "Name of a plugin",
+      "properties": {
+        "id": {
+          "description": "Unique id for plugin (must be a dot- separated).(eg: vendor.pluginName)",
+          "type": "string",
+          "pattern": "^[a-zA-Z]+(-[a-zA-Z0-9]+)*(.[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*)*$"
+        },
+        "name": {
+          "description": "Name of the plugin",
+          "type": "string"
+        }
+      }
+    },
+    "dependency": {
+      "description": "A dependency fetchable by the engine",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/plugin"
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "build-version",
+    "engine-min-version",
+    "engine-max-version"
+  ],
+  "allOf": [
+    {
+      "properties": {
+        "version": {
+          "description": "Version number for the plugin.",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of the plugin",
+          "type": "string"
+        },
+        "category": {
+          "description": "The name of the category this plugin",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "(Optional) The company or individual who created this plugin",
+          "type": "string"
+        },
+        "vendor-url": {
+          "description": "(Optional) Hyperlink URL string for the company or individual who created this plugin",
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "description": "(Optional) Description of the plugin",
+          "type": "string"
+        },
+        "build-version": {
+          "description": "Version of the engine that this plugin is build with",
+          "type": "integer"
+        },
+        "engine-min-version": {
+          "description": "Minimum version of the engine that this plugin is compatible with",
+          "type": "integer"
+        },
+        "engine-max-version": {
+          "description": "Maximum version of the engine that this plugin is compatible with",
+          "type": "integer"
+        },
+        "dependencies": {
+          "description": "Dependencies that are always required",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dependency"
+          }
+        }
+      }
+    }
+  ]
+}
