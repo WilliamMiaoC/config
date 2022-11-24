@@ -1,5 +1,5 @@
 {
-  "$id": "https://example.com/product.schema.json",
+  "$id": "https://raw.githubusercontent.com/WilliamMiaoC/config/master/Schema/plugin.schema.json",
   "title": "Plugin schema",
   "description": "Plugin schema for zeta engine",
   "definitions": {
